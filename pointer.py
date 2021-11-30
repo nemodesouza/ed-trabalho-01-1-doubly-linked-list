@@ -1,0 +1,2 @@
+class Pointer:
+    pass
