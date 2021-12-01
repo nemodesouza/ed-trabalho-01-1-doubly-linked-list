@@ -32,9 +32,3 @@ class Cursor:
         while self.__current is not None:
             self.__current = self.__current.next
 
-
-        # Outras (de apoio):
-
-        # - [ ]  (boolean) Vazia()
-        # - [ ]  (boolean) Cheia()
-        # - [ ]  (INT) posiçãoDe(chave)
