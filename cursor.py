@@ -33,3 +33,8 @@ class Cursor:
             self.__current = self.__current.next
 
 
+        # Outras (de apoio):
+
+        # - [ ]  (boolean) Vazia()
+        # - [ ]  (boolean) Cheia()
+        # - [ ]  (INT) posiçãoDe(chave)
