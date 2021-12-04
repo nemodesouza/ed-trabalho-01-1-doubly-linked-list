@@ -4,7 +4,7 @@ class Cursor:
 
     @property
     def current(self):
-        """Retorna o elemento atlatl"""
+        """Retorna o elemento"""
         return self.__current
 
     @current.setter

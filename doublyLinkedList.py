@@ -82,7 +82,6 @@ class DoublyLinkedList:
             self.__cursor.advanceKPos(k-1)
             self.insertBeforeCurrent(data)
 
-
     def popCurrent(self):
         """(void) ExcluirAtual ()"""
         if self.isEmpty():
@@ -106,46 +105,76 @@ class DoublyLinkedList:
             self.__cursor.current = self.__cursor.current.next
             self.__elements -= 1
 
+    def popFirst(self):
+        """(void) ExcluirPrim ()"""
+        self.__cursor.goToFirst()
+        self.popCurrent()
 
+    def popLast(self):        
+        """(void) ExcluirUlt ()"""
+        self.__cursor.goToLast()
+        self.popCurrent()
 
-# - [ ]  (void) ExcluirPrim ()
-# - [ ]  (void) ExcluirUlt ()
-# - [ ]  (void) ExcluirElem ( chave )
-# - [ ]  (void) ExcluirDaPos ( k )
-# - [ ]  (boolean) Buscar ( chave )
-
-
-
+    def popElement(self, element):
+        """(void) ExcluirElem ( chave )"""
+        self.search(element)
+        self.popCurrent()
+        print(f"O elemento {element} foi excluído!")
+    
+    def excludeFromPos(self, k):
+        """(void) ExcluirDaPos ( k )"""        
+        if self.isEmpty():
+            print("A lista está vazia!")
+        elif k > self.__elements or k < 0:
+            print("A posição não existe!")
+        else:
+            k-=1
+            self.__cursor.goToFirst()
+            self.__cursor.advanceKPos(k)
+            self.popCurrent()
     
     
+
+    def search(self, key):
+        """(boolean) Buscar ( chave )"""
+        self.__cursor.goToFirst()
+        element = self.__cursor.current
+
+        while element.data != key:
+            if self.__cursor.current.next is None:
+                print("Print: False, elemento inexistente!")
+                return False
+            else:
+                self.__cursor.advanceKPos(1)
+                element = self.__cursor.current
+        print("Print: True, o elemento informado existe na lista!")
+        return True
+
+    # Outras (de apoio):
+
     def isEmpty(self):
+        """(boolean) Vazia()"""
         return self.__elements == 0
 
     def isFull(self):
+        """(boolean) Cheia()"""
         return self.__elements == self.__limit
-
-    def positionOf(self, key): #verificar depois
+        
+    def positionOf(self, key):
+        """(INT) posiçãoDe(chave)"""
         if self.isEmpty():
-            print("Lista Vazia!")
+            print("A lista está vazia!")
         else:
             self.__cursor.goToFirst()
-            element = self.__cursor.current
+            current = self.__cursor.current
             position = 1
-            
-            while element.value != key:
-                if self.__cursor.current.next is not None:
-                    return None                
+
+            while current.data != key:
+                if self.__cursor.current.next is None:
+                    print("Elemento inexistente!")
+                    return None
                 else:
                     self.__cursor.advanceKPos(1)
-                    element = self.__cursor.current
+                    current = self.__cursor.current
                     position += 1
-                print(position)
-
-                return position
-
-    
-        # Outras (de apoio):
-
-        # - [ ]  (boolean) Vazia()
-        # - [ ]  (boolean) Cheia()
-        # - [ ]  (INT) posiçãoDe(chave)
+                print(f"A posição do elemento {key} é a de n. {position}!")
