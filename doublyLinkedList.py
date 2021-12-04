@@ -133,8 +133,6 @@ class DoublyLinkedList:
             self.__cursor.advanceKPos(k)
             self.popCurrent()
     
-    
-
     def search(self, key):
         """(boolean) Buscar ( chave )"""
         self.__cursor.goToFirst()
@@ -178,3 +176,5 @@ class DoublyLinkedList:
                     current = self.__cursor.current
                     position += 1
                 print(f"A posição do elemento {key} é a de n. {position}!")
+        
+        
